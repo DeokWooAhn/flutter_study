@@ -387,9 +387,9 @@ class Body5 extends StatelessWidget {
 /// - Expanded와 Flexible은 함께 사용할 수 있으며, 필요에 따라 공간을 효율적으로 분배하는 데 도움
 /// - 주로 반응형 레이아웃을 만들 때 유용
 
-void main() {
-  runApp(const MaterialApp(home: HomeWidget()));
-}
+// void main() {
+//   runApp(const MaterialApp(home: HomeWidget()));
+// }
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
