@@ -410,7 +410,7 @@ class ConstraintWidget extends StatelessWidget {
         Expanded(
           child: Container(
             color: Colors.blue,
-            child: Text("qqqqqqqqqqqqq", style: TextStyle(fontSize: 30)),
+            child: Text("eeeeeeeeeeeeeeeeeeee", style: TextStyle(fontSize: 30)),
           ),
         ),
         Flexible(
