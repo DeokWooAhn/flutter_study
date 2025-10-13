@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/StatefulScreen.dart';
 
 /** runApp 예시
  * - Flutter 애플리케이션의 진입점
@@ -419,4 +420,8 @@ class ConstraintWidget extends StatelessWidget {
       ],
     );
   }
+}
+
+void main() {
+  runApp(const MaterialApp(home: StatefulBody(),));
 }
