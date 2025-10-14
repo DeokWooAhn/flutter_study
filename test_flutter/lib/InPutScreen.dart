@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InPutScreen extends StatelessWidget {
@@ -5,8 +6,18 @@ class InPutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(children: [TestCheckBox(),
-    TestRadioButton()]);
+    return Scaffold(
+      appBar: AppBar(title: const Text('Input Screen')),
+      body: const Column(
+        children: [
+          TestCheckBox(),
+          TestRadioButton(),
+          TestSlider(),
+          TestSwitch(),
+          TestPopupMenu(),
+        ],
+      ),
+    );
   }
 }
 
@@ -53,11 +64,7 @@ class _TestCheckBoxState extends State<TestCheckBox> {
   }
 }
 
-enum TestRadioValue {
-  test1,
-  test2,
-  test3,
-}
+enum TestValue { test1, test2, test3 }
 
 class TestRadioButton extends StatefulWidget {
   const TestRadioButton({super.key});
@@ -67,15 +74,114 @@ class TestRadioButton extends StatefulWidget {
 }
 
 class _TestRadioButtonState extends State<TestRadioButton> {
-  TestRadioButton? selectValue;
+  TestValue? selectValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return RadioGroup<TestValue>(
+      groupValue: selectValue,
+      onChanged: (value) => setState(() => selectValue = value!),
+      child: Column(
+        children: [
+          ListTile(
+            leading: Radio<TestValue>(value: TestValue.test1),
+            title: Text(TestValue.test1.name),
+            onTap: () => setState(() {
+              if (selectValue != TestValue.test1) {
+                selectValue = TestValue.test1;
+              }
+            }),
+          ),
+          Radio<TestValue>(value: TestValue.test2),
+          Radio<TestValue>(value: TestValue.test3),
+        ],
+      ),
+    );
+  }
+}
+
+class TestSlider extends StatefulWidget {
+  const TestSlider({super.key});
+
+  @override
+  State<TestSlider> createState() => _TestSliderState();
+}
+
+class _TestSliderState extends State<TestSlider> {
+  double value = 0;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Radio(value: TestRadioValue.test1, groupValue: TestRadioValue, onChanged: ,)
+        Text("${value.round()}"),
+        Slider(
+          value: value,
+          onChanged: (newValue) => setState(() => value = newValue),
+          divisions: 100,
+          max: 100,
+          min: 0,
+          label: value.round().toString(),
+          activeColor: Colors.red,
+        ),
       ],
     );
   }
 }
 
+class TestSwitch extends StatefulWidget {
+  const TestSwitch({super.key});
+
+  @override
+  State<TestSwitch> createState() => _TestSwitchState();
+}
+
+class _TestSwitchState extends State<TestSwitch> {
+  bool value = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Switch(
+          value: value,
+          onChanged: (newValue) => setState(() => value = newValue),
+        ),
+        CupertinoSwitch(
+          value: value,
+          onChanged: (newValue) => setState(() => value = newValue),
+        ),
+      ],
+    );
+  }
+}
+
+class TestPopupMenu extends StatefulWidget {
+  const TestPopupMenu({super.key});
+
+  @override
+  State<TestPopupMenu> createState() => _TestPopupMenuState();
+}
+
+class _TestPopupMenuState extends State<TestPopupMenu> {
+  TestValue selectValue = TestValue.test1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(selectValue.name),
+        PopupMenuButton(
+          itemBuilder: (context) {
+            return TestValue.values
+                .map(
+                  (value) => PopupMenuItem(value: value, child: Text(value.name)),
+                )
+                .toList();
+          },
+          onSelected: (newValue) => setState(() => selectValue = newValue),
+        ),
+      ],
+    );
+  }
+}
