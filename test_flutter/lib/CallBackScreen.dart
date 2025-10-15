@@ -23,22 +23,28 @@ class _TestWidgetState extends State<TestWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("Count: $value", style: const TextStyle(fontSize: 30)),
-        TestButton(),
+        TestButton(addCounter),
       ],
     );
   }
+
+  void addCounter(int addValue) => setState(() => value = addValue + value);
 }
 
 class TestButton extends StatelessWidget {
-  const TestButton({super.key});
+  const TestButton(this.callback, {super.key});
+
+  final Function(int) callback;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       width: double.infinity,
-      child: GestureDetector(
-        onTap: () => {},
+      child: InkWell(
+        onTap: () => callback.call(1),
+        onDoubleTap: () => callback.call(5),
+        onLongPress: () => callback.call(10),
         child: Center(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

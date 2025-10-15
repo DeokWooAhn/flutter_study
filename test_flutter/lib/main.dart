@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter/StatefulScreen.dart';
 import 'package:test_flutter/InPutScreen.dart';
 import 'package:test_flutter/CallBackScreen.dart';
+import 'package:test_flutter/LibraryScreen.dart';
+import 'package:test_flutter/AssetsScreen.dart';
 
 /** runApp 예시
  * - Flutter 애플리케이션의 진입점
@@ -425,5 +427,5 @@ class ConstraintWidget extends StatelessWidget {
 }
 
 void main() {
-  runApp(const MaterialApp(home: CallbackScreen(),));
+  runApp(const MaterialApp(home: AssetsScreen(),));
 }
