@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_flutter/StatefulScreen.dart';
 import 'package:test_flutter/InPutScreen.dart';
 import 'package:test_flutter/CallBackScreen.dart';
 import 'package:test_flutter/LibraryScreen.dart';
 import 'package:test_flutter/AssetsScreen.dart';
+import 'package:test_flutter/NavigateScreen.dart';
+import 'package:test_flutter/NavigateScreen2.dart';
+import 'package:test_flutter/navigate_screen3.dart';
+import 'package:test_flutter/screen/new_page.dart';
 
 /** runApp 예시
  * - Flutter 애플리케이션의 진입점
@@ -426,6 +431,33 @@ class ConstraintWidget extends StatelessWidget {
   }
 }
 
+// void main() {
+//   runApp(const MaterialApp(home: NavigateScreen2(),));
+// }
+
 void main() {
-  runApp(const MaterialApp(home: AssetsScreen(),));
+  runApp(
+    MaterialApp.router(
+      routerConfig: GoRouter(
+        initialLocation: '/',
+        routes: [
+          GoRoute(
+            path: "/",
+            name: "home",
+            builder: (context, _) => const NavigateScreen2(),
+          ),
+          GoRoute(
+            path: "/new",
+            name: "new",
+            builder: (context, _) => const NewPage(),
+          ),
+          GoRoute(
+            path: "/new1",
+            name: "new1",
+            builder: (context, _) => const NewPage2(),
+          ),
+        ],
+      ),
+    ),
+  );
 }
