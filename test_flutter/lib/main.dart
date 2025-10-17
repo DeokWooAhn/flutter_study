@@ -9,6 +9,7 @@ import 'package:test_flutter/NavigateScreen.dart';
 import 'package:test_flutter/NavigateScreen2.dart';
 import 'package:test_flutter/navigate_screen3.dart';
 import 'package:test_flutter/screen/new_page.dart';
+import 'package:test_flutter/screen/new_page_route.dart';
 
 /** runApp 예시
  * - Flutter 애플리케이션의 진입점
@@ -431,33 +432,83 @@ class ConstraintWidget extends StatelessWidget {
   }
 }
 
-// void main() {
-//   runApp(const MaterialApp(home: NavigateScreen2(),));
-// }
+class ThemeBody extends StatefulWidget {
+  const ThemeBody({super.key});
+
+  @override
+  State<ThemeBody> createState() => _ThemeBodyState();
+}
+
+class _ThemeBodyState extends State<ThemeBody> {
+  int count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Flutter Theme"),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("press Count", style: textTheme.bodyLarge,),
+              Text("$count", style: textTheme.titleLarge,)
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+
+            }),
+          },
+        );
+    }
+}
 
 void main() {
   runApp(
-    MaterialApp.router(
-      routerConfig: GoRouter(
-        initialLocation: '/',
-        routes: [
-          GoRoute(
-            path: "/",
-            name: "home",
-            builder: (context, _) => const NavigateScreen2(),
-          ),
-          GoRoute(
-            path: "/new",
-            name: "new",
-            builder: (context, _) => const NewPage(),
-          ),
-          GoRoute(
-            path: "/new1",
-            name: "new1",
-            builder: (context, _) => const NewPage2(),
-          ),
-        ],
+    MaterialApp(
+      home: const NavigateScreen2(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)
+        )
       ),
     ),
   );
 }
+
+// void main() {
+//   runApp(
+//     MaterialApp.router(
+//       routerConfig: GoRouter(
+//         initialLocation: '/',
+//         routes: [
+//           GoRoute(
+//             path: "/",
+//             name: "home",
+//             builder: (context, _) => const NavigateScreen2(),
+//           ),
+//           GoRoute(
+//             path: "/new",
+//             name: "new",
+//             builder: (context, _) => const NewPageRoute(),
+//             routes: [
+//
+//             ]
+//           ),
+//           GoRoute(
+//             path: "/new1",
+//             name: "new1",
+//             builder: (context, _) => const NewPage2(),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
