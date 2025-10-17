@@ -447,37 +447,32 @@ class _ThemeBodyState extends State<ThemeBody> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Flutter Theme"),
+      appBar: AppBar(title: const Text("Flutter Theme")),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("press Count", style: textTheme.bodyLarge),
+            Text("$count", style: textTheme.titleLarge),
+          ],
         ),
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("press Count", style: textTheme.bodyLarge,),
-              Text("$count", style: textTheme.titleLarge,)
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-
-            }),
-          },
-        );
-    }
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {setState(() {})},
+      ),
+    );
+  }
 }
 
 void main() {
   runApp(
     MaterialApp(
-      home: const NavigateScreen2(),
+      home: const ThemeBody(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         textTheme: TextTheme(
-          bodyMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)
-        )
+          bodyMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+        ),
       ),
     ),
   );
