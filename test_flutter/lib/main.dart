@@ -10,6 +10,7 @@ import 'package:test_flutter/NavigateScreen2.dart';
 import 'package:test_flutter/navigate_screen3.dart';
 import 'package:test_flutter/screen/new_page.dart';
 import 'package:test_flutter/screen/new_page_route.dart';
+import 'package:test_flutter/style/theme.dart';
 
 /** runApp 예시
  * - Flutter 애플리케이션의 진입점
@@ -402,35 +403,35 @@ class Body5 extends StatelessWidget {
 //   runApp(const MaterialApp(home: HomeWidget()));
 // }
 
-class HomeWidget extends StatelessWidget {
-  const HomeWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SafeArea(child: Scaffold(body: ConstraintWidget()));
-  }
-}
-
-class ConstraintWidget extends StatelessWidget {
-  const ConstraintWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            color: Colors.blue,
-            child: Text("eeeeeeeeeeeeeeeeeeee", style: TextStyle(fontSize: 30)),
-          ),
-        ),
-        Flexible(
-          child: Container(color: Colors.red, child: Text("wwwwww")),
-        ),
-      ],
-    );
-  }
-}
+// class HomeWidget extends StatelessWidget {
+//   const HomeWidget({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return const SafeArea(child: Scaffold(body: ConstraintWidget()));
+//   }
+// }
+//
+// class ConstraintWidget extends StatelessWidget {
+//   const ConstraintWidget({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         Expanded(
+//           child: Container(
+//             color: Colors.blue,
+//             child: Text("eeeeeeeeeeeeeeeeeeee", style: TextStyle(fontSize: 30)),
+//           ),
+//         ),
+//         Flexible(
+//           child: Container(color: Colors.red, child: Text("wwwwww")),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 class ThemeBody extends StatefulWidget {
   const ThemeBody({super.key});
@@ -444,7 +445,7 @@ class _ThemeBodyState extends State<ThemeBody> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = customTheme.textTheme;
 
     return Scaffold(
       appBar: AppBar(title: const Text("Flutter Theme")),
@@ -458,7 +459,11 @@ class _ThemeBodyState extends State<ThemeBody> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {setState(() {})},
+        onPressed: () {
+          setState(() {
+            count++;
+          });
+        },
       ),
     );
   }
@@ -468,12 +473,7 @@ void main() {
   runApp(
     MaterialApp(
       home: const ThemeBody(),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-        textTheme: TextTheme(
-          bodyMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-      ),
+      theme: customTheme
     ),
   );
 }
