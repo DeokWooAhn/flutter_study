@@ -16,9 +16,9 @@ class GameBody extends StatefulWidget {
 
 class _GameBodyState extends State<GameBody> {
   late bool isDone;
-  late InputType? _userInput;
+  InputType? _userInput;
   late InputType _comInput;
-  
+
   @override
   void initState() {
     super.initState();
@@ -30,9 +30,17 @@ class _GameBodyState extends State<GameBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(child: ComInput(isDone: isDone, comInput: _comInput)),
+        Expanded(
+          child: ComInput(isDone: isDone, comInput: _comInput),
+        ),
         Expanded(child: GameResult(isDone: isDone)),
-        Expanded(child: UserInput(isDone: isDone, callback: setUserInput)),
+        Expanded(
+          child: UserInput(
+            isDone: isDone,
+            callback: setUserInput,
+            userInput: _userInput,
+          ),
+        ),
       ],
     );
   }
@@ -47,5 +55,39 @@ class _GameBodyState extends State<GameBody> {
   void setComInput() {
     final random = Random();
     _comInput = InputType.values[random.nextInt(3)];
+  }
+
+  Result? getResult() {
+    if (_userInput == null) return null;
+
+    switch (_userInput!) {
+      case InputType.rock:
+        switch (_comInput) {
+          case InputType.rock:
+            return Result.draw;
+          case InputType.scissors:
+            return Result.playerWin;
+          case InputType.paper:
+            return Result.comWin;
+        }
+      case InputType.scissors:
+        switch (_comInput) {
+          case InputType.rock:
+            return Result.playerWin;
+          case InputType.scissors:
+            return Result.draw;
+          case InputType.paper:
+            return Result.comWin;
+        }
+      case InputType.paper:
+        switch (_comInput) {
+          case InputType.rock:
+            return Result.comWin;
+          case InputType.scissors:
+          return Result.playerWin;
+          case InputType.paper:
+            return Result.draw;
+        }
+    }
   }
 }

@@ -10,13 +10,27 @@ class ComInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isDone) {
-      return const Placeholder();
-    }
+    return Row(
+      children: [
+        Expanded(child: SizedBox.shrink()),
+        InputCard(child: getComInput()),
+        Expanded(child: SizedBox.shrink()),
+      ],
+    );
+  }
 
-    return InputCard(
-      callback: callback,
-      child: SizedBox(width: 60, height: 6, child: const Text("?")),
+  Widget getComInput() {
+    if (isDone) {
+      return Image.asset(comInput.path);
+    }
+    return const SizedBox(
+      height: 80,
+      child: Center(
+        child: Text(
+          "?",
+          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }
