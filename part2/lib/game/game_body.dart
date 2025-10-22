@@ -33,7 +33,7 @@ class _GameBodyState extends State<GameBody> {
         Expanded(
           child: ComInput(isDone: isDone, comInput: _comInput),
         ),
-        Expanded(child: GameResult(isDone: isDone)),
+        Expanded(child: GameResult(isDone: isDone, result: getResult(), callback: reset,)),
         Expanded(
           child: UserInput(
             isDone: isDone,
@@ -57,6 +57,13 @@ class _GameBodyState extends State<GameBody> {
     _comInput = InputType.values[random.nextInt(3)];
   }
 
+  void reset() {
+    setState(() {
+      isDone = false;
+      setComInput();
+    });
+  }
+
   Result? getResult() {
     if (_userInput == null) return null;
 
@@ -73,18 +80,18 @@ class _GameBodyState extends State<GameBody> {
       case InputType.scissors:
         switch (_comInput) {
           case InputType.rock:
-            return Result.playerWin;
+            return Result.comWin;
           case InputType.scissors:
             return Result.draw;
           case InputType.paper:
-            return Result.comWin;
+            return Result.playerWin;
         }
       case InputType.paper:
         switch (_comInput) {
           case InputType.rock:
-            return Result.comWin;
+            return Result.playerWin;
           case InputType.scissors:
-          return Result.playerWin;
+            return Result.comWin;
           case InputType.paper:
             return Result.draw;
         }
