@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -102,6 +103,90 @@ class FeedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.blue.shade300,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(feedData.userName),
+                ],
+              ),
+              const Icon(Icons.more_vert),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          width: double.infinity,
+          height: 280,
+          color: Colors.indigo.shade300,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.favorite_outline),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(CupertinoIcons.chat_bubble),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(CupertinoIcons.paperplane),
+                  ),
+                ],
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(CupertinoIcons.bookmark),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Text(
+            "좋아요 ${feedData.likeCount}개",
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: feedData.userName,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                TextSpan(text: feedData.content),
+              ],
+              style: const TextStyle(color: Colors.black),
+            ),
+          ),
+        ),
+        const SizedBox(height: 8),
+      ],
+    );
   }
 }
