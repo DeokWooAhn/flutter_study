@@ -54,7 +54,12 @@ class SearchGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       padding: EdgeInsets.zero,
-      children: [],
+      mainAxisSpacing: 4,
+      crossAxisSpacing: 4,
+      crossAxisCount: 3,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      children: gridItems.map((color) => Container(color: color)).toList(),
     );
   }
 }
