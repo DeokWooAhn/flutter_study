@@ -38,8 +38,6 @@ dependencies:
   velocity_x: ^3.6.0
   flutter_native_splash: ^2.3.0
   retrofit: ^4.9.0
-  isar: 3.1.0
-  isar_flutter_libs: 3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +52,6 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   retrofit_generator: ^10.0.1
   build_runner: ^2.6.0
-  isar_generator: 3.1.0+1
   test: ^1.26.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
