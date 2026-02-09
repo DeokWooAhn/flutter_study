@@ -6,6 +6,7 @@ export 'package:fast_app_base/common/constant/app_colors.dart';
 typedef ColorProvider = Color Function();
 
 abstract class AbstractThemeColors {
+
   const AbstractThemeColors();
 
   Color get seedColor => const Color(0xff26ff8c);
@@ -51,4 +52,11 @@ abstract class AbstractThemeColors {
   Color get buttonBackground => const Color.fromARGB(255, 48, 48, 48);
 
   Color get roundedLayoutBackground => const Color.fromARGB(255, 24, 24, 24);
+
+  Color get unreadColor => const Color.fromARGB(255, 48, 48, 48);
+
+  Color get lessImportant => AppColors.grey;
+
+  Color get blueText => AppColors.blue;
+
 }
