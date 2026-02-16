@@ -29,7 +29,7 @@ class AppPreferences {
 
     if (isNullable && value == null) {
       //null을 세팅한다는 것은 값을 지운다는 의미로 해석. 필요에 따라 변경해서 쓰시면 되요.
-      return _prefs.remove(item.key);
+      return _prefs.remove(key);
     }
 
     if (isNullable) {
@@ -84,6 +84,23 @@ class AppPreferences {
 
   static T getValue<T>(PreferenceItem<T> item) {
     final String key = getPrefKey(item);
+
+    switch (T.toString()) {
+      case "int?":
+        return (_prefs.getInt(key) as T?) ?? item.defaultValue;
+      case "String?":
+        return (_prefs.getString(key) as T?) ?? item.defaultValue;
+      case "double?":
+        return (_prefs.getDouble(key) as T?) ?? item.defaultValue;
+      case "bool?":
+        return (_prefs.getBool(key) as T?) ?? item.defaultValue;
+      case "List<String>?":
+        return (_prefs.getStringList(key) as T?) ?? item.defaultValue;
+      case "DateTime?":
+        final s = _prefs.getString(key);
+        return (s == null ? null : DateTime.parse(s)) as T? ?? item.defaultValue;
+    }
+
     switch (T) {
       case int:
         return _prefs.getInt(key) as T? ?? item.defaultValue;

@@ -22,7 +22,7 @@ class SearchStockData extends GetxController {
 
   Future<void> loadLocalStockJson() async {
     final jsonList =
-        await LocalJson.getObjectList<SimpleStock>("stock_list.json");
+        await LocalJson.getObjectList<SimpleStock>("json/stock_list.json");
     stocks.addAll(jsonList);
   }
 

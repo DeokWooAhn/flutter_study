@@ -47,7 +47,7 @@ class RxnPreferenceItem<T, R extends Rxn<T>> extends NullablePreferenceItem<T> {
   static R createRxnValue<T, R extends Rxn<T>>([T? defaultValue]) {
     switch (T) {
       case int:
-        return RxnInt(defaultValue as int?) as R;
+        return Rxn<int>(defaultValue as int?) as R;
       case double:
         return RxnDouble(defaultValue as double?) as R;
       case bool:
