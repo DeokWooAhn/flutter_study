@@ -1,4 +1,5 @@
 import 'package:fast_app_base/common/common.dart';
+import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:fast_app_base/screen/main/tab/stock/tab/f_todays_discovery.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +57,8 @@ class _StockFragmentState extends State<StockFragment>
               if (currentIndex == 0)
                 const MyStockFragment()
               else
-                const TodaysDiscoveryFragment()
+                const TodaysDiscoveryFragment(),
+              SizedBox(height: MainScreenState.bottomNavigatorHeight),
             ],
           ),
         )
